@@ -1,3 +1,4 @@
+# 耳DP-
 n = int(input())
 s = input()
 def add(a, b):
