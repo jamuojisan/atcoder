@@ -22,34 +22,17 @@ def n_lislis(n):
         a.append(list(map(int, input().split())))
     return a
 
-H, W, N, h, w = map_int()
-
-A = [list(map(int, input().split())) for _ in range(H)]
-
-count = [[[0]]]
-
-for i in range(H):
-    for j in range(W):
-        count[A[i][j]] += 1
-
-
+N = n_int()
 ans = []
-for i in range(H-h+1):
-    _ans = []
-    for j in range(W-w+1):
-        bcount = defaultdict(int)
-        B= np.ravel(A[i:i+h,j:j+w])
-        for b in B:
-            bcount[b] +=1
-        __ans = len(set(count.keys()) - set(bcount.keys()))
+for i in range(1,N):
+    print('?', i, i)
+    print()
+    m = input()
+    ans.append(m)
+for i in range(1, N+1):
+    if i not in set(ans):
+        ans.append(i)
+print(*ans)
+exit()
 
-        for b in (set(count.keys()) & set(bcount.keys())):
-            if count[b] > bcount[b]:
-                __ans+=1
-
-        _ans.append(__ans)
-        
-    ans.append(_ans)
-for i in range(H-h+1):
-    print(*ans[i])
         

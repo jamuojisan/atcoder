@@ -171,7 +171,7 @@ for _ in range(m):
     G[v].append([c, u])
 import heapq
 def minimum_spannning_tree(G):
-    marked = [False]*n
+    marked = [False]*N
 
     marked[0] = True
     marked_count = 1
@@ -184,7 +184,7 @@ def minimum_spannning_tree(G):
     # 最小全域木の重みの合計を保存する変数
     ans = 0
 
-    while marked_count < n:
+    while marked_count < N:
         c, i = heapq.heappop(q)
         if marked[i]:
             continue
