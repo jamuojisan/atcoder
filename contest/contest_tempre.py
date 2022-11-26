@@ -25,14 +25,14 @@ def n_lislis(n):
 N = n_int()
 ans = []
 for i in range(1,N):
-    print('?', i, i)
+    print('?', i, i+1)
     print()
     m = input()
     ans.append(m)
 for i in range(1, N+1):
     if i not in set(ans):
         ans.append(i)
-print(*ans)
+print('!', *ans)
 exit()
 
         
