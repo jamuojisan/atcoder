@@ -96,7 +96,7 @@ def diekstra(G,a):
         if done[v] :
             continue
         done[v] = True
-        for (nv, c) in G[v]:
+        for (c, nv) in G[v]:
             if visited[nv] == -1 or visited[nv] > visited[v] + c:
                 visited[nv] = visited[v] + c
                 heapq.heappush(q, (visited[nv],nv))
