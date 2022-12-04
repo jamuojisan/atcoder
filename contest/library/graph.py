@@ -1,4 +1,4 @@
-from collections import deque
+
 
 from collections import defaultdict
 class UnionFind():
@@ -48,18 +48,15 @@ class UnionFind():
             group_members[self.find(member)].append(member)
         return group_members
 
-def dfs(visited, que):
-    
-    while(len(que) != 0):
-        loc = que[0]
-        que.popleft()
-        # 探索
-        next_ = hogehoge
-        # 探索先を入れるかどうか
-        if next not in set(visited):
-            que.appendleft(next)
-        
-
+import sys
+sys.setrecursionlimit(10**7)
+def dfs(v, pre):
+    if visited[v] != -1:
+        return
+    visited[v] = visited[pre] + 1
+    for nv in G[v]:
+        dfs(nv, v)
+    return
 
 # 0-1 bfs
 visited = {}
