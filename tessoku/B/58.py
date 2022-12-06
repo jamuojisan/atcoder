@@ -28,7 +28,11 @@ class segtree:
 		return max(answerl, answerr)
 
 # 入力
-N, Q = map(int, input().split())
+N, L, R = map(int, input().split())
+X = [*map(int, input().split())]
+dp = [10**9 for _ in range(N)]
+dp[0] = 0
+
 queries = [ list(map(int, input().split())) for i in range(Q) ]
 
 # クエリの処理
