@@ -1,7 +1,5 @@
 import sys
 from collections import deque, defaultdict
-
-input = sys.stdin.readline
 sys.setrecursionlimit(10**7)
 def n_int():
     return int(input())
@@ -22,17 +20,19 @@ def n_lislis(n):
         a.append(list(map(int, input().split())))
     return a
 
-N = n_int()
-ans = []
-for i in range(1,N):
-    print('?', i, i+1)
-    print()
-    m = input()
-    ans.append(m)
-for i in range(1, N+1):
-    if i not in set(ans):
-        ans.append(i)
-print('!', *ans)
-exit()
+N ,P = map(int, input().split())
 
-        
+mod = 998244353
+ans = 0
+for i in range(N+1):
+    if 2*i> N + 1:
+        continue
+    ans += P * 2*i
+     # ans %= mod
+    if 2*i == N:
+        continue
+
+    ans += (100-P)*(N - 2*i)
+    # ans %= mod
+print(ans)
+    
