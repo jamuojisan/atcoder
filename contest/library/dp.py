@@ -53,3 +53,31 @@ for N in range(2**n):
             dp[N|(1<<j)][j] = min(dp[N|(1<<j)][j], dp[N][i] + dis[i][j])
 
 print(dp[2**n-1][0])
+
+# 尺取り法
+
+N, K = map(int ,input().split())
+A = [*map(int, input().split())]
+right = 0
+ans = 0
+count  = {}
+f = set()
+for left in range(N):
+    while(right < N  and  ( (A[right] not in f and (len(f) +1 <= K)) or (A[right] in f))) :
+        if A[right] in count:
+            count[A[right]] += 1
+        else:
+            count[A[right]] = 1
+        f.add(A[right])
+        right += 1
+    ans = max(right-left, ans)
+    if right == left:
+        right +=1
+    else:
+        if A[left] in f:
+            count[A[left]] -= 1
+            if count[A[left]] == 0:
+                f.remove(A[left])
+    if right == N:
+        break
+print(ans)
