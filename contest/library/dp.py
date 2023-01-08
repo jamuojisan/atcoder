@@ -43,14 +43,17 @@ inf = 10 ** 20
 dp = [[inf]*(n) for _ in range(2**n)] # dp[n][i] すでに訪れた都市の集合nがあって、最後にいる都市がiのときの合計コストの最小値
 dp[0][0] = 0 # 最初の出発地は都市0
 
-for N in range(2**n):
+for n in range(2**N):
     # iからjへの遷移をしらべる
-    for i in range(n):
-        for j in range(n):
-            # すでに訪問済みなら調べない
-            if  N & (1 << j) or i == j:
+    for i in range(N):
+        for j in range(N):
+            # iに未訪問ならスキップ
+            if n != 0 and not n &(1<<i):
                 continue
-            dp[N|(1<<j)][j] = min(dp[N|(1<<j)][j], dp[N][i] + dis[i][j])
+            # jを訪問済みならスキップ
+            if  n & (1 << j) or i == j:
+                continue
+            dp[n|(1<<j)][j] = min(dp[n|(1<<j)][j], dp[n][i] + dis[i][j])
 
 print(dp[2**n-1][0])
 

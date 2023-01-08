@@ -1,8 +1,13 @@
-n,k,q =map(int, input().split())
-a = list(map(int, input().split()))
-l = list(map(int, input().split()))
+N,K,Q =map(int, input().split())
+A = list(map(int, input().split()))
+L = list(map(int, input().split()))
 
-for q in l:
-    if q == k:
-        continue
+loc2koma = {i:-1 for i in range(N)}
+for i in A:
+    loc2koma[i-1] = 1
+
+for i in L:
+    i -= 1
+    
+
     
