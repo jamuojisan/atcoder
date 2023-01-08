@@ -59,6 +59,7 @@ def dfs(v, pre):
     return
 
 # 0-1 bfs
+from collections import deque
 visited = {}
 for i in range(n):
     for j in range(2):
@@ -119,7 +120,7 @@ def bfs(G,a):
 
 # bfs 2次元グリッドver
 def bfs(c, y0, x0):
-    visited = [[-1]*w for _ in range(h)]
+    visited = [[-1]*W for _ in range(H)]
     visited[y0][x0] = 0
     q =deque()
     q.append([y0,x0])
@@ -128,7 +129,7 @@ def bfs(c, y0, x0):
         y, x = q.popleft()
         for dy, dx in [[-1, 0], [1, 0], [0,-1], [0,1]]:
             ny , nx = y + dy, x+dx
-            if ny < 0 or ny >=h or nx<0 or nx >=w:
+            if ny < 0 or ny >=H or nx<0 or nx >=W:
                 continue
             if visited[ny][nx] != -1 or c[ny][nx] == '#':
                 continue
@@ -158,7 +159,6 @@ def  FloydWarshal()
 
 
 # 最小全域木
- 
 
 n, m  = map(int, input().split())
 G = [[] for _ in range(n)]
@@ -196,4 +196,46 @@ def minimum_spannning_tree(G):
             heapq.heappush(q, [c, j])
 
     return ans
-        
+
+def scc(G,RG):
+    """強連結成分分解を行う関数
+
+    Args:
+        G (_type_): 順方向のGraph
+        RG (_type_): 逆方向のGraph
+    Returns:
+        label:最後のグループID
+        groups:グループリスト
+    """
+    import sys
+    sys.setrecursionlimit(10**7)
+    order = []
+    used = [-1]*N
+    groups = [None]*N
+    def dfs(v):
+        used[v] = 1
+        for nv in G[v]:
+            if used[nv] != -1:
+                continue
+            dfs(nv)
+        order.append(v)
+    
+    def rdfs(v, col):
+        groups[v] = col
+        used[v] = 1
+        for nv in RG[v]:
+            if used[nv] != -1:
+                continue
+            rdfs(nv, col)
+    for i in range(N):
+        if used[i] != -1:
+            continue
+        dfs(i)
+    used = [-1]*N
+    label = 0
+    for v in reversed(order):
+        if used[v] != -1:
+            continue
+        rdfs(v, label)
+        label +=1
+    return label, groups
