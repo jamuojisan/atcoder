@@ -1,4 +1,4 @@
-# 約数列挙
+# 約数列挙　 O(√n)
 def make_divisors(n):
     lower_divisors , upper_divisors = [], []
     i = 1
@@ -10,7 +10,7 @@ def make_divisors(n):
         i += 1
     return lower_divisors + upper_divisors[::-1]
 
-# n以下の素数かどかのフラグリストを列挙
+# n以下の素数かどかのフラグリストを列挙 O(nloglogn)
 import math
 def sieve_of_eratosthenes(n):
     prime = [True for i in range(n+1)]
