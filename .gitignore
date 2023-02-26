@@ -1,7 +1,4 @@
 .venv/*
-<<<<<<< HEAD
 rust/*
 src/*
-=======
-/contest/contest_tempre.py
->>>>>>> 7b15233839c80ad72b506670d2967bc8ba1d9c03
+contest/ahc/*
