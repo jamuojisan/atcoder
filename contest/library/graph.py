@@ -141,7 +141,7 @@ def bfs(c, y0, x0):
 # ワーシャルフロイド法
 def  FloydWarshal()
     INF = 10**20
-    dist = [[INF]*n for _ in range(n)]
+    dist = [[INF]*N for _ in range(N)]
     for i in range(n):
         dist[i][i] = 0
 
@@ -149,8 +149,6 @@ def  FloydWarshal()
         u, v, c = map_int()
         dist[u][v] = c
 
-
-        
     for k in range(n):
         for i in range(n):
             for j in range(n):
