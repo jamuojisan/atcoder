@@ -1,13 +1,11 @@
-import math
-score = 1574
+N , M, V = map(int, input().split())
+A = [[ i*M + (j+1) for j in range(M)] for i in range(N)]
 
-Q = sorted([score - 724.4744301*math.log(j, 2) for j in range(1, 101)], reverse=True)
-
-bunsi = sum([Q[i-1]*(0.8271973364**(i)) for i in range(1,101)])
-bunbo = sum([0.8271973364**(i) for i in range(1,101)])
-r = bunsi/bunbo
-print(bunsi, bunbo)
-if r>= 400:
-    print(r)
-else:
-    print(400/(math.exp((400-r)/400)))
+count = 0
+S = [[0]*(M+1) for _ in range(N+1)]
+for i in range(N):
+    for j in range(M):
+        S[i+1][j+1] = S[i+1][j] + S[i][j+1] - S[i][j] + A[i][j]
+        if S[i+1][j+1] == V:
+            count += 1
+print(count)

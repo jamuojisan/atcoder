@@ -27,7 +27,7 @@ def wrap(ps):
     qs.append(ps[this_i])
   return qs
 
-def gaiseki(moto, saki0, saki1):
+def gaiseki(moto, saki0, saki1):touch 
   # moto->saki0 の直線に対し saki1がどちら側にあるか
   # >0 ならば 左側 <0 ならば 右側
   x0 = saki0[0] - moto[0]
